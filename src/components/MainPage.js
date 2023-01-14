@@ -2,7 +2,7 @@ import {Grid,useMediaQuery,Typography,Pagination} from '@mui/material'
 import {useTheme} from '@mui/material/styles'
 import { useState } from 'react'
 
-function App() {
+function MainPage() {
   const theme = useTheme()
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'))
@@ -141,4 +141,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainPage;
