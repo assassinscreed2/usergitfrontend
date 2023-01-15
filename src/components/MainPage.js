@@ -3,10 +3,8 @@ import {useTheme} from '@mui/material/styles'
 import { useState,useEffect } from 'react'
 
 function MainPage({userData,setOpen,open}) {
-  console.log("inside")
   const [repos,setRepos] = useState(userData.repositories.slice(0,9))
   
-  console.log(userData)
   const theme = useTheme()
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'))
@@ -80,9 +78,6 @@ function MainPage({userData,setOpen,open}) {
               </Typography>
             </Grid>
             <Grid item container alignItems="flex-end" style={{width:matchesSM?"18em":matchesMD?"21em":"28em",paddingBottom:"1em"}}>
-                {/* {v.tags.map((tag,index) => <Grid item style={{backgroundColor:"#2DA44E",borderRadius:"4%",marginLeft:"0.4em",marginTop:"0.7em",maxHeight:"1.6em"}}>
-                  <Typography align='center' color="white" style={{paddingLeft:"0.4em",paddingRight:"0.4em"}}>javascript</Typography>
-                </Grid>)} */}
                 <Grid item style={{backgroundColor:"#2DA44E",borderRadius:"4%",marginLeft:"0.4em",marginTop:"0.7em",maxHeight:"1.6em"}}>
                   <Typography align='center' color="white" style={{paddingLeft:"0.4em",paddingRight:"0.4em"}}>
                     {v.language}

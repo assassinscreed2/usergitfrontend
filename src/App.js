@@ -1,7 +1,5 @@
-import AskUser from './components/AskUser'
 import MainPage from './components/MainPage'
-import {Grid,useMediaQuery,Typography,TextField, Button,Backdrop,CircularProgress} from '@mui/material'
-import {useTheme} from '@mui/material/styles'
+import {Grid,Typography,TextField, Button,Backdrop,CircularProgress} from '@mui/material'
 import { useRef, useState } from 'react'
 
 function App() {
@@ -23,8 +21,6 @@ function App() {
     }else{
       setError(undefined)
     }
-    
-    console.log(data)
   }
 
   return (
