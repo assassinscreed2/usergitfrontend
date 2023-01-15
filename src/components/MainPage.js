@@ -26,11 +26,11 @@ function MainPage({userData,setOpen,open}) {
     <Grid container justifyContent="center" style={{marginTop:"3em"}}>
       <Grid container direction={matchesSM?"column":"row"} alignItems={matchesSM?"center":undefined} justifyContent={matchesSM?undefined:"space-around"}>
         <Grid item>
-          <img src={userData.avatar_url} style={{borderRadius:"100%",height:"10em"}} alt="user avatar"/>
+          <img src={userData.avatar_url} style={{borderRadius:"100%",height:"10em",border:"5px solid #2DA44E"}} alt="user avatar"/>
         </Grid>
         <Grid item container direction = "column" style={{maxWidth:"15em"}} alignItems={matchesSM?"center":undefined}>
           <Grid item>
-            <Typography color={matchesSM?"red":matchesMD?"yellow":"black"} variant="h4">
+            <Typography color="black" style={{fontWeight:600}} variant="h4">
               {userData.name !== null? userData.name:userData.login}
             </Typography>
           </Grid>

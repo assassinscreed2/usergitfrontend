@@ -8,13 +8,22 @@ function App() {
   const userRef = useRef()
   const [userData,setData] = useState()
   const [open, setOpen] = useState(false);
+  const [error,setError] = useState() 
 
   const handleRequest = async (e) => {
     setOpen(true)
     const user = userRef.current.value
     const response = await fetch(`${process.env.REACT_APP_SERVER}/user/${user}`)
     const data = await response.json();
-    setData(data)
+    data.error ? setError(data):setData(data)
+  
+    if(data.error){
+      setOpen(false)
+      setData(null)
+    }else{
+      setError(undefined)
+    }
+    
     console.log(data)
   }
 
@@ -40,6 +49,7 @@ function App() {
         <CircularProgress color="inherit" />
       </Backdrop>
       {userData && <MainPage userData = {userData} setOpen={setOpen} open={open}/>}
+      {error && <Grid container justifyContent="center" style={{marginTop:"2em"}}><Typography style={{fontSize:"2em",fontWeight:600,color:"red",textShadow:"2px 1.5px 3.4px red"}}>Invalid Username</Typography></Grid>}
     </>
   );
 }
