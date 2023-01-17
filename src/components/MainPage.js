@@ -68,7 +68,7 @@ function MainPage({userData,setOpen,open}) {
       {/* repos */}
       <Grid item container justifyContent="center" style={{marginTop:"2em"}}>
         {
-          repos.map((v,ind) => <Grid container direction="column" alignItems="center" justifyContent="space-between" key={ind} style={{border:"solid #2DA44E",boxShadow:"10px 10px 5px lightblue",minHeight:"5em",marginTop:"1em",marginLeft:matchesSM?"0em":matchesMD?"2em":"3em",width:matchesSM?"20em":matchesMD?"23em":"30em"}}>
+          repos.map((v,ind) => <Grid onClick={()=>window.open(v.git_url.replace("git","https"),'_blank')} container direction="column" alignItems="center" justifyContent="space-between" key={ind} style={{border:"solid #2DA44E",boxShadow:"10px 10px 5px lightblue",minHeight:"5em",marginTop:"1em",marginLeft:matchesSM?"0em":matchesMD?"2em":"3em",width:matchesSM?"20em":matchesMD?"23em":"30em"}}>
             <Grid item style={{padding:"1em 1em 0em 1em",width:"100%"}}>
               <Typography variant="h5" style={{fontWeight:600,marginLeft:"0.2em",width:"100%"}}>
                 {v.name}

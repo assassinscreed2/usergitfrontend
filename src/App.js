@@ -1,6 +1,7 @@
 import MainPage from './components/MainPage'
-import {Grid,Typography,TextField, Button,Backdrop,CircularProgress} from '@mui/material'
+import {Grid,Typography} from '@mui/material'
 import { useRef, useState } from 'react'
+import InputPage from './components/InputPage'
 
 function App() {
   const userRef = useRef()
@@ -11,6 +12,11 @@ function App() {
   const handleRequest = async (e) => {
     setOpen(true)
     const user = userRef.current.value
+    if(user.length == 0){
+      setError({error:"no data"})
+      setOpen(false)
+      return;
+    }
     const response = await fetch(`${process.env.REACT_APP_SERVER}/user/${user}`)
     const data = await response.json();
     data.error ? setError(data):setData(data)
@@ -25,27 +31,9 @@ function App() {
 
   return (
     <>
-      <Grid item container justifyContent="center" alignContent="space-around" style={{minHeight:"10em",border:"8px solid #2DA44E",borderRadius:"1%"}}>
-        <Grid item >
-          <Typography align="center" style={{fontWeight:"900"}} color="#2DA44E">
-            Enter Github Username
-          </Typography>
-        </Grid>
-        <Grid item style={{width:"90%"}}>
-          <TextField inputRef={userRef} size="small" style={{width:"100%"}}/>
-        </Grid>
-        <Grid item>
-          <Button variant='outlined' style={{color:"#2DA44E",borderColor:"#2DA44E"}} onClick={handleRequest}>Submit</Button>
-        </Grid>
-      </Grid>
-      <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      <InputPage userRef={userRef} handleRequest={handleRequest} open={open}/>
       {userData && <MainPage userData = {userData} setOpen={setOpen} open={open}/>}
-      {error && <Grid container justifyContent="center" style={{marginTop:"2em"}}><Typography style={{fontSize:"2em",fontWeight:600,color:"red",textShadow:"2px 1.5px 3.4px red"}}>Invalid Username</Typography></Grid>}
+      {error && <Grid container justifyContent="center" style={{marginTop:"2em"}}><Typography style={{fontSize:"2em",fontWeight:600,color:"red",textShadow:"2px 1.5px 3.4px red"}}>{error.error === "no data"?<>Enter Username</>:<>Invalid Username</>}</Typography></Grid>}
     </>
   );
 }
